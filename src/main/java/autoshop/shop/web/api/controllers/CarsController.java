@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -52,8 +53,6 @@ public class CarsController {
 //                            .collect(Collectors.toList()));
 //        }
 
-        modelAndView.addObject("clients", this.carService.viewAllCars());
-
         modelAndView.setViewName("/admin/cars/index");
         return modelAndView;
     }
@@ -79,7 +78,7 @@ public class CarsController {
     }
 
     @PostMapping("/add")
-    public ModelAndView postAddCar(@ModelAttribute("carRegisterModel") CarRegisterModel carRegisterModel,
+    public ModelAndView postAddCar(@Valid @ModelAttribute("carRegisterModel") CarRegisterModel carRegisterModel,
                                    BindingResult bindingResult,
                                    ModelAndView modelAndView){
 
@@ -92,6 +91,15 @@ public class CarsController {
         this.carService.addCarToDb(this.modelMapper.map(carRegisterModel, CarServiceRegisterModel.class));
 
         modelAndView.setViewName("/admin/cars/added");
+        return modelAndView;
+    }
+
+    @GetMapping("/all")
+    public ModelAndView getAllCarView(ModelAndView modelAndView){
+
+        modelAndView.addObject("clients", this.carService.viewAllCars());
+
+        modelAndView.setViewName("admin/cars/all");
         return modelAndView;
     }
 }

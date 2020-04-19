@@ -42,6 +42,7 @@
                 <label for="client">Owner</label>
                 <select name="client" id="client" th:field="*{email}">
                     <option th:each="clientEntry : ${clients}" th:value="${clientEntry.getEmail()}" th:text="${clientEntry.name}"></option>
+                    <option th:value="*{email}" th:text="*{email}"></option>
                 </select>
             </div>
             <div>

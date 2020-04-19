@@ -29,6 +29,7 @@
         <ul>
             <li><a th:href="@{/admin/home}">HOME</a></li>
             <li><a th:href="@{/admin/cars/}">CARS</a></li>
+            <li><a th:href="@{/admin/cars/all}">ALL CARS</a></li>
             <li><a th:href="@{/admin/cars/add}">ADD CAR</a></li>
         </ul>
     </div>
@@ -37,24 +38,7 @@
     <section>
         <h2>CARS PAGE</h2>
 
-        <table>
-            <tr>
-                <th>Client Number</th>
-                <th>Make</th>
-                <th>Model</th>
-                <th>Engine type</th>
-                <th>Engine info</th>
-                <th>VIN</th>
-            </tr>
-            <tr th:each="car : ${clients}">
-                <td th:text="${car.client.name}"></td>
-                <td th:text="${car.make}"></td>
-                <td th:text="${car.year}"></td>
-                <td th:text="${car.engineType.displayValue}"></td>
-                <td th:text="${car.engineInfo}"></td>
-                <td th:text="${car.vin}"></td>
-            </tr>
-        </table>
+
     </section>
 </main>
 <footer>

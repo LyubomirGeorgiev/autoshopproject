@@ -18,4 +18,6 @@ public interface CarService {
     List<CarViewServiceModel> viewCarsByClient(Client client);
 
     Map<ClientViewServiceModel, List<CarViewServiceModel>> carsByClient();
+
+    List<CarViewServiceModel> getCarsByCustomerNumber(Long customerNumber);
 }

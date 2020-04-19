@@ -49,7 +49,7 @@
                 <td th:text="${client.customerNumber}">
                 </td>
                 <td>
-                    <a th:href="@{/}" th:text="${client.name}"></a>
+                    <a th:href="@{/admin/clients/clients/{customer_number}(customer_number = ${client.customerNumber})}" th:text="${client.name}"></a>
                 </td>
                 <td th:text="${client.clientType.displayValue}">
                 </td>

@@ -43,7 +43,7 @@ public class CarServiceImpl implements CarService{
     @Override
     public List<CarViewServiceModel> viewAllCars() {
 
-        List<CarViewServiceModel> cars = this.carRepository.findAll()
+        List<CarViewServiceModel> cars = this.carRepository.findAllOrderByClientName()
                 .stream()
                 .map(c -> this.modelMapper.map(c, CarViewServiceModel.class))
                 .collect(Collectors.toList());
@@ -72,5 +72,14 @@ public class CarServiceImpl implements CarService{
         });
 
         return carsClients;
+    }
+
+    @Override
+    public List<CarViewServiceModel> getCarsByCustomerNumber(Long customerNumber) {
+
+        return this.carRepository.findCarsByCustomerNumber(customerNumber)
+                .stream()
+                .map(car -> this.modelMapper.map(car, CarViewServiceModel.class))
+                .collect(Collectors.toList());
     }
 }

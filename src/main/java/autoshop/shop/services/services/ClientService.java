@@ -13,4 +13,6 @@ public interface ClientService {
     List<ClientViewServiceModel> findAllClients();
 
     Client getClientByEmail(String email);
+
+    ClientViewServiceModel getClientByClientNumber(Long clientNumber);
 }

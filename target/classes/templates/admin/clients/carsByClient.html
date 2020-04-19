@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" th:href="@{../../css/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{../../../css/style.css}">
 </head>
 <body>
 <header>
@@ -38,7 +38,30 @@
     <section>
         <h2>CARS PAGE</h2>
 
+        <h3>Cars for client</h3>
+        <p>Customer number: <span th:text="${client.customerNumber}"></span></p>
+        <p>Name: <span th:text="${client.name}"></span></p>
+        <p>Contact Person: <span th:text="${client.contactPerson}"></span></p>
+        <p>Phone: <span th:text="${client.phoneNumber}"></span></p>
+        <p>email: <span th:text="${client.email}"></span></p>
+        <p>Number of cars: <span th:text="${cars.size()}"></span></p>
 
+        <table>
+            <tr>
+                <th>Make</th>
+                <th>Model</th>
+                <th>Engine type</th>
+                <th>Engine info</th>
+                <th>VIN</th>
+            </tr>
+            <tr th:each="car : ${cars}">
+                <td th:text="${car.make}"></td>
+                <td th:text="${car.year}"></td>
+                <td th:text="${car.engineType.displayValue}"></td>
+                <td th:text="${car.engineInfo}"></td>
+                <td th:text="${car.vin}"></td>
+            </tr>
+        </table>
     </section>
 </main>
 <footer>

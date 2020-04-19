@@ -52,4 +52,9 @@ public class ClientServiceImpl implements ClientService{
 
         return this.clientRepository.findByEmail(email);
     }
+
+    @Override
+    public ClientViewServiceModel getClientByClientNumber(Long clientNumber) {
+        return this.modelMapper.map(this.clientRepository.findClientByCustomerNumber(clientNumber), ClientViewServiceModel.class);
+    }
 }

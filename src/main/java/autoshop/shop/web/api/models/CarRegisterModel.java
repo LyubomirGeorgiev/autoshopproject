@@ -4,13 +4,18 @@ import autoshop.shop.data.entities.Client;
 import autoshop.shop.data.entities.enums.EngineType;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 public class CarRegisterModel {
 
+    @Size(min = 3, max = 12, message = "Invalid Make.")
     private String make;
 
+    @Size(min = 3, max = 12, message = "Invalid Model.")
     private String model;
 
+    @Pattern(regexp = "^\\d{4}$", message = "Invalid Year.")
     private String year;
 
     private EngineType engineType;
@@ -19,6 +24,7 @@ public class CarRegisterModel {
 
     private String vin;
 
+    @Pattern(regexp = "^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$", message = "Invalid Email.")
     private String email;
 
     public CarRegisterModel() {
