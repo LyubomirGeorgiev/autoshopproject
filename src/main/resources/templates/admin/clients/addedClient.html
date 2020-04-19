@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" th:href="@{../../css/style.css}">
+</head>
+<body>
+<header>
+    <div>
+        Here is the logo of the site / Тук ще е логото на сайта
+        <p><h1>Autoservice</h1> <h2>Grand Auto</h2></p>
+    </div>
+
+    <div>
+        <p>ADMIN HOMEPAGE</p>
+        <p>CLIENTS</p>
+        <p>Hello, <span sec:authentication="name"></span>!</p>
+        <form th:action="@{/logout}">
+            <button>LOG OUT</button>
+        </form>
+    </div>
+</header>
+<nav>
+    <div>
+        <ul>
+            <li><a th:href="@{/admin/home}">HOME</a></li>
+            <li><a th:href="@{/admin/clients/clients}">CLIENTS</a></li>
+            <li><a th:href="@{/admin/clients/add}">ADD CLIENT</a></li>
+        </ul>
+    </div>
+</nav>
+<main>
+    <section>
+        <h2>ADD NEW CLIENT PAGE</h2>
+
+        <p>Added client:</p>
+        <div th:object="${clientRegisterModel}">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Contact person</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Client Type</th>
+                </tr>
+                <tr>
+                    <td th:text="*{name}"></td>
+                    <td th:text="*{contactPerson}"></td>
+                    <td th:text="*{email}"></td>
+                    <td th:text="*{phoneNumber}"></td>
+                    <td th:text="*{clientType.displayValue}"></td>
+                </tr>
+            </table>
+            <p th:text="*{name}"></p>
+            <p th:text="*{contactPerson}"></p>
+        </div>
+        <form th:action="@{/admin/clients/add}">
+            <button>ADD CLIENT</button>
+        </form>
+    </section>
+</main>
+<footer>
+    <p>Garnd Auto LLC - All rights reserved &copy; 2019 - 2020</p>
+</footer>
+</body>
+</html>

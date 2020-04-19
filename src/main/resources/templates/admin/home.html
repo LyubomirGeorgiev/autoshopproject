@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" th:href="@{../css/style.css}">
+</head>
+<body>
+<header>
+    <div>
+        Here is the logo of the site / Тук ще е логото на сайта
+        <p><h1>Autoservice</h1> <h2>Grand Auto</h2></p>
+    </div>
+
+    <div>
+        <p>ADMIN HOMEPAGE</p>
+        <p>Hello, <span sec:authentication="name"></span>!</p>
+        <form th:action="@{/logout}">
+            <button>LOG OUT</button>
+        </form>
+    </div>
+</header>
+<nav>
+    <div>
+        <ul>
+            <li><a th:href="@{/admin/home}">HOME</a></li>
+            <li><a th:href="@{/admin/clients/clients}">CLIENTS</a></li>
+            <li><a th:href="@{/admin/cars/}">CARS</a></li>
+            <li><a th:href="@{/admin/home}">MONEY</a></li>
+            <li><a th:href="@{/admin/home}">PARTS</a></li>
+        </ul>
+    </div>
+</nav>
+<main>
+    <section>
+        <p>Welcome to the ADMIN HOMEPAGE , <span sec:authentication="name"></span></p>
+
+
+    </section>
+    <section>
+        Cars in progress...
+    </section>
+    <section>
+        Cars ready for pick up...
+    </section>
+    <section>
+        Cars picked up, NOT PAID
+    </section>
+    <section>
+        Money in the bank
+    </section>
+    <section>
+        Invoices for payment
+    </section>
+    <section>
+        Awaiting payments
+    </section>
+</main>
+<footer>
+    <p>Garnd Auto LLC - All rights reserved &copy; 2019 - 2020</p>
+</footer>
+</body>
+</html>

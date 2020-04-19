@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" th:href="@{../css/style.css}">
+</head>
+<body>
+<header>
+    <div>
+        Here is the logo of the site / Тук ще е логото на сайта
+        <p><h1>Autoservice</h1> <h2>Grand Auto</h2></p>
+    </div>
+    <div>
+        <p>REGISTER PAGE</p>
+
+    </div>
+</header>
+<nav>
+    <div>
+        <ul>
+            <li><a th:href="@{/}">HOME</a></li>
+            <li><a th:href="@{/}">ABOUT</a></li>
+            <li><a th:href="@{/}">SERVICES</a></li>
+            <li><a th:href="@{/}">CONTACT</a></li>
+            <li><a th:href="@{/login.html}">LOGIN</a></li>
+        </ul>
+    </div>
+</nav>
+<main>
+    <section>
+        <p>Register to Grand Auto</p>
+        <form th:action="@{/user/register}" method="POST" name="register" th:object="${userRegisterModel}">
+            <div>
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" th:field="*{username}" autofocus tabindex="0" placeholder="username">
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" th:field="*{password}">
+            </div>
+            <div>
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" name="confirmPassword" id="confirmPassword" th:field="*{confirmPassword}">
+            </div>
+            <div>
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" th:field="*{email}">
+            </div>
+<!--            <div>-->
+<!--                <label for="phoneNumber">Phone</label>-->
+<!--                <input type="text" name="phoneNumber" id="phoneNumber" th:field="*{phoneNumber}" placeholder="111 111 1111">-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <label for="altPhoneNumber">Alternative Phone</label>-->
+<!--                <input type="text" name="altPhoneNumber" id="altPhoneNumber" th:field="*{altPhoneNumber}" placeholder="111 111 1111">-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <label for="name">Name</label>-->
+<!--                <input type="text" name="name" id="name" th:field="*{name}" placeholder="ex. John Smith or Grand Auto LLC.">-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <label for="clientType">Client type</label>-->
+<!--                <select name="clientType" id="clientType" th:field="*{clientType}">-->
+<!--                    <option th:each="typeC:${T(autoshop.shop.data.entities.enums.ClientType).values()}" th:value="${typeC}" th:text="${typeC.displayValue}"></option>-->
+<!--                </select>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <label for="contactPerson">Name for contact</label>-->
+<!--                <input type="text" name="contactPerson" id="contactPerson" th:field="*{contactPerson}" placeholder="ex. John Smith">-->
+<!--            </div>-->
+            <div th:if="${#fields.hasErrors()}">
+                <ul>
+                    <li th:each="error : ${#fields.errors()}" th:text="${error.toString()}"/>
+                </ul>
+            </div>
+            <div>
+                <button type="submit">Register</button>
+            </div>
+        </form>
+    </section>
+</main>
+<footer>
+    <p>Garnd Auto LLC - All rights reserved &copy; 2019 - 2020</p>
+</footer>
+</body>
+</html>

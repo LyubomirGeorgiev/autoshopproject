@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" th:href="@{../../css/style.css}">
+</head>
+<body>
+<header>
+    <div>
+        Here is the logo of the site / Тук ще е логото на сайта
+        <p><h1>Autoservice</h1> <h2>Grand Auto</h2></p>
+    </div>
+
+    <div>
+        <p>ADMIN HOMEPAGE</p>
+        <p>CLIENTS</p>
+        <p>Hello, <span sec:authentication="name"></span>!</p>
+        <form th:action="@{/logout}">
+            <button>LOG OUT</button>
+        </form>
+    </div>
+</header>
+<nav>
+    <div>
+        <ul>
+            <li><a th:href="@{/admin/home}">HOME</a></li>
+            <li><a th:href="@{/admin/clients/clients}">CLIENTS</a></li>
+            <li><a th:href="@{/admin/clients/add}">ADD CLIENT</a></li>
+        </ul>
+    </div>
+</nav>
+<main>
+    <section>
+        <h2>ADD NEW CLIENT PAGE</h2>
+
+        <form th:action="@{/admin/clients/add}" method="POST" name="register" th:object="${clientRegisterModel}">
+            <div>
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" th:field="*{name}" autofocus tabindex="0">
+            </div>
+            <div>
+                <label for="contactPerson">Contact person</label>
+                <input type="text" name="contactPerson" id="contactPerson" th:field="*{contactPerson}">
+            </div>
+            <div>
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" th:field="*{email}">
+            </div>
+            <div>
+                <label for="phoneNumber">Phone Number</label>
+                <input type="text" name="phoneNumber" id="phoneNumber" th:field="*{phoneNumber}">
+            </div>
+            <div>
+                <label for="secondPhoneNumber">Second phone number</label>
+                <input type="text" name="secondPhoneNumber" id="secondPhoneNumber" th:field="*{secondPhoneNumber}">
+            </div>
+            <div>
+                <label for="thirdPhoneNumber">Third phone Number</label>
+                <input type="text" name="thirdPhoneNumber" id="thirdPhoneNumber" th:field="*{thirdPhoneNumber}">
+            </div>
+            <div>
+                <label for="clientType">Client type</label>
+                <select name="clientType" id="clientType" th:field="*{clientType}">
+                    <option th:each="typeC:${T(autoshop.shop.data.entities.enums.ClientType).values()}" th:value="${typeC}" th:text="${typeC.displayValue}"></option>
+                </select>
+            </div>
+            <div th:if="${#fields.hasErrors()}">
+                <ul>
+                    <li th:each="error : ${#fields.errors()}" th:text="${error.toString()}"></li>
+                </ul>
+            </div>
+            <div>
+                <button type="submit">REGISTER</button>
+            </div>
+        </form>
+
+    </section>
+</main>
+<footer>
+    <p>Garnd Auto LLC - All rights reserved &copy; 2019 - 2020</p>
+</footer>
+</body>
+</html>

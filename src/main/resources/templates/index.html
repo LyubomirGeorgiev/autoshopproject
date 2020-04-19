@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grand Auto</title>
+    <link rel="stylesheet" type="text/css" th:href="@{css/style.css}">
+</head>
+<body>
+<header>
+    <div>
+        Here is the logo of the site / Тук ще е логото на сайта
+        <p><h1>Autoservice</h1> <h2>Grand Auto</h2></p>
+    </div>
+    <div sec:authorize="isAnonymous()">
+        <form th:action="@{/login}" name="login" method="POST">
+            <div>
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" placeholder="ex. John Smith" autofocus tabindex="0">
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password">
+            </div>
+            <div>
+                <button>Submit</button>
+            </div>
+        </form>
+    </div>
+    <div sec:authorize="isAuthenticated()">
+        Hello, <span sec:authentication="name"></span>
+        <form th:action="@{/logout}">
+            <button>LOG OUT</button>
+        </form>
+    </div>
+</header>
+<nav>
+    <div>
+        <ul>
+            <li><a th:href="@{/}">HOME</a></li>
+            <li><a th:href="@{/}">ABOUT US</a></li>
+            <li><a th:href="@{/}">SERVICES</a></li>
+            <li><a th:href="@{/}">CONTACT</a></li>
+            <li sec:authorize="anonymous"><a th:href="@{/login.html}">LOGIN</a></li>
+            <li sec:authorize="anonymous"><a th:href="@{user/register}">REGISTER</a></li>
+        </ul>
+    </div>
+</nav>
+
+<main>
+    <article class="testBlueBackground">
+        <header>
+            <h3>Engine Repairing</h3>
+        </header>
+        <section>
+            <p>We repair engines</p>
+        </section>
+    </article>
+</main>
+<footer>
+    <p>Garnd Auto LLC - All rights reserved &copy; 2019 - 2020</p>
+</footer>
+</body>
+</html>
