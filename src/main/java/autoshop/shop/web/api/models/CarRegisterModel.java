@@ -9,6 +9,9 @@ import javax.validation.constraints.Size;
 
 public class CarRegisterModel {
 
+    @Size(min = 6, max = 8, message = "Invalid license plate.")
+    private String licensePlate;
+
     @Size(min = 3, max = 12, message = "Invalid Make.")
     private String make;
 
@@ -84,5 +87,13 @@ public class CarRegisterModel {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getLicensePlate() {
+        return licensePlate;
+    }
+
+    public void setLicensePlate(String licensePlate) {
+        this.licensePlate = licensePlate;
     }
 }

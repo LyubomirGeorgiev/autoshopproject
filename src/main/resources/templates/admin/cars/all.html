@@ -41,15 +41,19 @@
         <table>
             <tr>
                 <th>Client Name</th>
+                <th>Licence plate</th>
                 <th>Make</th>
                 <th>Model</th>
+                <th>Year</th>
                 <th>Engine type</th>
                 <th>Engine info</th>
                 <th>VIN</th>
             </tr>
-            <tr th:each="car : ${clients}">
+            <tr th:each="car : ${cars}">
                 <td th:text="${car.client.name}"></td>
+                <td th:text="${car.licensePlate}"></td>
                 <td th:text="${car.make}"></td>
+                <td th:text="${car.model}"></td>
                 <td th:text="${car.year}"></td>
                 <td th:text="${car.engineType.displayValue}"></td>
                 <td th:text="${car.engineInfo}"></td>

@@ -82,4 +82,10 @@ public class CarServiceImpl implements CarService{
                 .map(car -> this.modelMapper.map(car, CarViewServiceModel.class))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public Car getCarByLicensePlate(String licensePlate) {
+
+        return this.carRepository.findByLicensePlate(licensePlate);
+    }
 }

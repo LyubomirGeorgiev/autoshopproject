@@ -7,6 +7,8 @@ import javax.persistence.*;
 
 public class CarViewModel {
 
+    private String licensePlate;
+
     private String make;
 
     private String model;
@@ -78,5 +80,13 @@ public class CarViewModel {
 
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    public String getLicensePlate() {
+        return licensePlate;
+    }
+
+    public void setLicensePlate(String licensePlate) {
+        this.licensePlate = licensePlate;
     }
 }

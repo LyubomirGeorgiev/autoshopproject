@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" th:href="@{../../css/style.css}">
+</head>
+<body>
+<header>
+    <div>
+        Here is the logo of the site / Тук ще е логото на сайта
+        <p><h1>Autoservice</h1> <h2>Grand Auto</h2></p>
+    </div>
+
+    <div>
+        <p>ADMIN HOMEPAGE</p>
+        <p>MONEY</p>
+        <p>Hello, <span sec:authentication="name"></span>!</p>
+        <form th:action="@{/logout}">
+            <button>LOG OUT</button>
+        </form>
+    </div>
+</header>
+<nav>
+    <div>
+        <ul>
+            <li><a th:href="@{/admin/home}">HOME</a></li>
+            <li><a th:href="@{/admin/bills/}">BILLS</a></li>
+            <li><a th:href="@{/admin/bills/}">NOT PAID</a></li>
+            <li><a th:href="@{/admin/bills/add}">ADD BILL</a></li>
+            <li><a th:href="@{/admin/bills/edit}">EDIT BILL</a></li>
+        </ul>
+    </div>
+</nav>
+<main>
+    <section>
+        <h2>BILLS PAGE</h2>
+        <h3>EDITING A BILL...</h3>
+
+       <div>
+           <p>Bill number: <span th:text="${bill.billNumber}"></span></p>
+           <p>Open date: <span th:text="${bill.startDate}"></span></p>
+           <p>Close date: <span th:text="${bill.endDate}"></span></p>
+           <p>Car license plate: <span th:text="${bill.car.licensePlate}"></span></p>
+           <p>Car make: <span th:text="${bill.car.make}"></span></p>
+           <p>Car model: <span th:text="${bill.car.model}"></span></p>
+           <p>Car year: <span th:text="${bill.car.year}"></span></p>
+           <p>Client name: <span th:text="${bill.car.client.name}"></span></p>
+           <p>Client contact person: <span th:text="${bill.car.client.contactPerson}"></span></p>
+           <p>Client email: <span th:text="${bill.car.client.email}"></span></p>
+           <p>Client phone: <span th:text="${bill.car.client.phoneNumber}"></span></p>
+           <p>Cost for parts: <span th:text="${bill.partsAmount}"></span></p>
+           <p>Cost for labor: <span th:text="${bill.laborAmount}"></span></p>
+           <p>Total cost: <span th:text="${bill.totalAmount}"></span></p>
+       </div>
+
+        <div>
+            <h6>PARTS</h6>
+            <table>
+                <tr>
+                    <th>PART NUMBER</th>
+                    <th>NAME</th>
+                    <th>BRAND</th>
+                    <th>PRICE</th>
+                    <th>DISCOUNT</th>
+                    <th>FINAL PRICE</th>
+                </tr>
+                <tr th:each="part : ${bill.parts}">
+                    <td th:text="${part.part.partNumber}"></td>
+                    <td th:text="${part.part.name}"></td>
+                    <td th:text="${part.part.brand}"></td>
+                    <td th:text="${part.officialSellingPrice}"></td>
+                    <td th:text="${part.sellingDiscount}"></td>
+                    <td th:text="${part.soldPrice}"></td>
+                </tr>
+            </table>
+            <div>
+                <form th:action="@{/admin/bills}" method="post" th:name="addParts" th:object="${partWarehouseModel}">
+                    <label for="partWarehouse">PART: </label>
+                    <select name="partWarehouse" id="partWarehouse" th:field="*{partInventoryNumber}">
+                        <option th:each="part : ${parts}" th:value="${part.partInventoryNumber}">
+                            <span th:text="${part.part.partNumber}"></span>
+                            <span th:text="${part.part.name}"></span>
+                            <span th:text="${part.part.brand}"></span>
+                            <span th:text="${part.soldPrice}"></span>
+                        </option>
+                    </select>
+                    <label for="soldPrice">Selling price: </label>
+                    <input type="text" name="soldPrice" id="soldPrice" th:field="*{soldPrice}">
+                </form>
+            </div>
+        </div>
+
+    </section>
+</main>
+<footer>
+    <p>Garnd Auto LLC - All rights reserved &copy; 2019 - 2020</p>
+</footer>
+</body>
+</html>

@@ -10,6 +10,9 @@ import java.util.Date;
 @Table(name = "parts_warehouse")
 public class PartWarehouse extends BaseEntity{
 
+    @Column(name = "part_inventory_number")
+    private Long partInventoryNumber;
+
     @Column(name = "delivered_date")
     private Date deliveredDate;
 
@@ -120,5 +123,29 @@ public class PartWarehouse extends BaseEntity{
 
     public void setSupplier(Supplier supplier) {
         this.supplier = supplier;
+    }
+
+    public PartStatus getPartStatus() {
+        return partStatus;
+    }
+
+    public void setPartStatus(PartStatus partStatus) {
+        this.partStatus = partStatus;
+    }
+
+    public Bill getBill() {
+        return bill;
+    }
+
+    public void setBill(Bill bill) {
+        this.bill = bill;
+    }
+
+    public Long getPartInventoryNumber() {
+        return partInventoryNumber;
+    }
+
+    public void setPartInventoryNumber(Long partInventoryNumber) {
+        this.partInventoryNumber = partInventoryNumber;
     }
 }

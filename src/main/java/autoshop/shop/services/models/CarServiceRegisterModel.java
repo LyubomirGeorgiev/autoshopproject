@@ -5,6 +5,8 @@ import autoshop.shop.data.entities.enums.EngineType;
 
 public class CarServiceRegisterModel {
 
+    private String licensePlate;
+
     private String make;
 
     private String model;
@@ -76,5 +78,13 @@ public class CarServiceRegisterModel {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getLicensePlate() {
+        return licensePlate;
+    }
+
+    public void setLicensePlate(String licensePlate) {
+        this.licensePlate = licensePlate;
     }
 }

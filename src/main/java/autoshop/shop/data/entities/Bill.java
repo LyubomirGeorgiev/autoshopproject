@@ -35,7 +35,7 @@ public class Bill extends BaseEntity{
     private int percent_paid;
 
     @ManyToOne
-    @JoinColumn(name = "client_id", nullable = false)
+    @JoinColumn(name = "car_id", nullable = false)
     private Car car;
 
     @OneToMany(mappedBy = "bill")

@@ -97,7 +97,7 @@ public class CarsController {
     @GetMapping("/all")
     public ModelAndView getAllCarView(ModelAndView modelAndView){
 
-        modelAndView.addObject("clients", this.carService.viewAllCars());
+        modelAndView.addObject("cars", this.carService.viewAllCars());
 
         modelAndView.setViewName("admin/cars/all");
         return modelAndView;

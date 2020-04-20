@@ -1,5 +1,6 @@
 package autoshop.shop.services.services;
 
+import autoshop.shop.data.entities.Car;
 import autoshop.shop.data.entities.Client;
 import autoshop.shop.services.models.CarServiceRegisterModel;
 import autoshop.shop.services.models.CarViewServiceModel;
@@ -20,4 +21,6 @@ public interface CarService {
     Map<ClientViewServiceModel, List<CarViewServiceModel>> carsByClient();
 
     List<CarViewServiceModel> getCarsByCustomerNumber(Long customerNumber);
+
+    Car getCarByLicensePlate(String licensePlate);
 }

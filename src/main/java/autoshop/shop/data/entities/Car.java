@@ -9,6 +9,9 @@ import java.util.Set;
 @Table(name = "cars")
 public class Car  extends BaseEntity{
 
+    @Column(name = "license_plate")
+    private String licensePlate;
+
     @Column(name = "make")
     private String make;
 
@@ -100,5 +103,13 @@ public class Car  extends BaseEntity{
 
     public void setBills(Set<Bill> bills) {
         this.bills = bills;
+    }
+
+    public String getLicensePlate() {
+        return licensePlate;
+    }
+
+    public void setLicensePlate(String licensePlate) {
+        this.licensePlate = licensePlate;
     }
 }
