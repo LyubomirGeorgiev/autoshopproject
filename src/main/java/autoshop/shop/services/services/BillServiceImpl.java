@@ -30,4 +30,10 @@ public class BillServiceImpl implements BillService{
 
         return this.billRepository.saveAndFlush(bill);
     }
+
+    @Override
+    public Bill getBillByBillNumber(int billNumber) {
+
+        return this.billRepository.findBillByBillNumber(billNumber);
+    }
 }

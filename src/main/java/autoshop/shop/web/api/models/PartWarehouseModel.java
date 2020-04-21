@@ -133,4 +133,6 @@ public class PartWarehouseModel {
     public void setPartInventoryNumber(Long partInventoryNumber) {
         this.partInventoryNumber = partInventoryNumber;
     }
+
+
 }

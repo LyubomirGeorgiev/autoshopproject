@@ -6,4 +6,6 @@ import autoshop.shop.services.models.BillCreateServiceModel;
 public interface BillService {
 
     Bill createBill(BillCreateServiceModel billCreateServiceModel);
+
+    Bill getBillByBillNumber(int billNumber);
 }

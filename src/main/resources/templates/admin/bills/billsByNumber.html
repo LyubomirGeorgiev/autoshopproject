@@ -77,8 +77,9 @@
                     <td th:text="${part.soldPrice}"></td>
                 </tr>
             </table>
+            <p>Parts total cost: $<span th:text="${bill.partsAmount}"></span> </p>
             <div>
-                <form th:action="@{/admin/bills}" method="post" th:name="addParts" th:object="${partWarehouseModel}">
+                <form th:action="@{/admin/bills/{billNumber}/parts(billNumber = ${billNumber})}" method="post" th:name="addParts" th:object="${partWarehouseModel}">
                     <label for="partWarehouse">PART: </label>
                     <select name="partWarehouse" id="partWarehouse" th:field="*{partInventoryNumber}">
                         <option th:each="part : ${parts}" th:value="${part.partInventoryNumber}">
@@ -90,6 +91,43 @@
                     </select>
                     <label for="soldPrice">Selling price: </label>
                     <input type="text" name="soldPrice" id="soldPrice" th:field="*{soldPrice}">
+                    <button type="submit">ADD PART</button>
+                </form>
+            </div>
+        </div>
+
+        <div>
+            <h6>LABOR</h6>
+            <table>
+                <tr>
+                    <th>DATE</th>
+                    <th>ACTION</th>
+                    <th>SINGLE PRICE</th>
+                    <th>QUANTITY</th>
+                    <th>TOTAL PRICE</th>
+                </tr>
+                <tr th:each="labor : ${bill.laborList}">
+                    <td th:text="${labor.date.toLocaleString()}"></td>
+                    <td th:text="${labor.action}"></td>
+                    <td th:text="${labor.singlePrice}"></td>
+                    <td th:text="${labor.quantity}"></td>
+                    <td th:text="${labor.totalPrice}"></td>
+                </tr>
+            </table>
+            <p>Labor total cost: $<span th:text="${bill.laborAmount}"></span> </p>
+            <div>
+                <form th:action="@{/admin/bills/{billNumber}/labor(billNumber = ${billNumber})}" method="post" th:name="addLabor" th:object="${laborModel}">
+                    <label for="action">Action: </label>
+                    <input type="text" name="action" id="action" th:field="*{action}">
+                    <label for="singlePrice">Single price: </label>
+                    <input type="text" name="singlePrice" id="singlePrice" th:field="*{singlePrice}">
+                    <label for="quantity">Quantity: </label>
+                    <input type="text" name="quantity" id="quantity" th:field="*{quantity}">
+                    <label for="employee">Employee: </label>
+                    <select name="employee" id="employee" th:field="*{employee}">
+                        <option th:each="employee : ${employees}" th:value="${employee.employeeNumber}" th:text="${employee.name}"></option>
+                    </select>
+                    <button type="submit">ADD LABOR</button>
                 </form>
             </div>
         </div>

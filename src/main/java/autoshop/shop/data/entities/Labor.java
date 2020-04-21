@@ -8,11 +8,14 @@ import java.util.Date;
 @Table(name = "labor")
 public class Labor extends BaseEntity{
 
+    @Column(name = "labor_number")
+    private int laborNumber;
+
     @Column(name = "action")
     private String action;
 
-    @Column(name = "number")
-    private int number;
+    @Column(name = "quantity")
+    private int quantity;
 
     @Column(name = "single_price")
     private BigDecimal singlePrice;
@@ -27,6 +30,10 @@ public class Labor extends BaseEntity{
     @JoinColumn(name = "bill_id", nullable = false)
     private Bill bill;
 
+    @ManyToOne
+    @JoinColumn(name = "employee_id")
+    private Employee employee;
+
     public Labor() {
     }
 
@@ -38,12 +45,12 @@ public class Labor extends BaseEntity{
         this.action = action;
     }
 
-    public int getNumber() {
-        return number;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public BigDecimal getSinglePrice() {
@@ -76,5 +83,21 @@ public class Labor extends BaseEntity{
 
     public void setBill(Bill bill) {
         this.bill = bill;
+    }
+
+    public int getLaborNumber() {
+        return laborNumber;
+    }
+
+    public void setLaborNumber(int laborNumber) {
+        this.laborNumber = laborNumber;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 }

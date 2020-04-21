@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" th:href="@{../../css/style.css}">
+</head>
+<body>
+<header>
+    <div>
+        Here is the logo of the site / Тук ще е логото на сайта
+        <p><h1>Autoservice</h1> <h2>Grand Auto</h2></p>
+    </div>
+
+    <div>
+        <p>ADMIN HOMEPAGE</p>
+        <p>CLIENTS</p>
+        <p>Hello, <span sec:authentication="name"></span>!</p>
+        <form th:action="@{/logout}">
+            <button>LOG OUT</button>
+        </form>
+    </div>
+</header>
+<nav>
+    <div>
+        <ul>
+            <li><a th:href="@{/admin/home}">HOME</a></li>
+            <li><a th:href="@{/admin/parts/}">PARTS</a></li>
+            <li><a th:href="@{/admin/parts/add}">ADD PART</a></li>
+            <li><a th:href="@{/admin/parts/addtowarehouse}">ADD PART TO WAREHOUSE</a></li>
+        </ul>
+    </div>
+</nav>
+<main>
+    <section>
+        <h2>ADD PARTS PAGE</h2>
+
+        <div>
+            <form th:action="@{/admin/parts/add}" method="post" th:name="addParts" th:object="${partAddModel}">
+                <label for="partNumber">Part number: </label>
+                <input type="text" name="partNumber" id="partNumber" th:field="*{partNumber}">
+                <label for="name">Part NAME: </label>
+                <input type="text" name="name" id="name" th:field="*{name}">
+                <label for="technicalSpecs">Technical specs: </label>
+                <input type="text" name="technicalSpecs" id="technicalSpecs" th:field="*{technicalSpecs}">
+                <label for="brand">Brand: </label>
+                <input type="text" name="brand" id="brand" th:field="*{brand}">
+                <label for="deliveryPrice">Delivery price: </label>
+                <input type="text" name="deliveryPrice" id="deliveryPrice" th:field="*{deliveryPrice}">
+                <label for="officialSellingPrice">Official selling price: </label>
+                <input type="text" name="officialSellingPrice" id="officialSellingPrice" th:field="*{officialSellingPrice}">
+<!--                <label for="supplier">Supplier: </label>-->
+<!--                <input type="text" name="supplier" id="supplier" th:field="*{supplier}">-->
+                <button type="submit">ADD PART</button>
+            </form>
+        </div>
+
+    </section>
+</main>
+<footer>
+    <p>Garnd Auto LLC - All rights reserved &copy; 2019 - 2020</p>
+</footer>
+</body>
+</html>

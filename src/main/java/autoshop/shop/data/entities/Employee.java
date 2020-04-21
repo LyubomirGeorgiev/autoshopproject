@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -40,6 +41,9 @@ public class Employee extends BaseEntity{
 
     @OneToMany(mappedBy = "employee")
     private Set<OutgoingPayment> salaryPayments;
+
+    @OneToMany(mappedBy = "employee")
+    private List<Labor> laborList;
 
     public Employee() {
     }
@@ -122,5 +126,13 @@ public class Employee extends BaseEntity{
 
     public void setSalaryPayments(Set<OutgoingPayment> salaryPayments) {
         this.salaryPayments = salaryPayments;
+    }
+
+    public List<Labor> getLaborList() {
+        return laborList;
+    }
+
+    public void setLaborList(List<Labor> laborList) {
+        this.laborList = laborList;
     }
 }

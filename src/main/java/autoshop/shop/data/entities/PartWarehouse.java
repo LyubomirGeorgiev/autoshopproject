@@ -43,7 +43,7 @@ public class PartWarehouse extends BaseEntity{
     private Part part;
 
     @ManyToOne
-    @JoinColumn(name = "supplier_id", nullable = false)
+    @JoinColumn(name = "supplier_id")
     private Supplier supplier;
 
     @ManyToOne
@@ -148,4 +148,6 @@ public class PartWarehouse extends BaseEntity{
     public void setPartInventoryNumber(Long partInventoryNumber) {
         this.partInventoryNumber = partInventoryNumber;
     }
+
+
 }
