@@ -19,9 +19,9 @@ public interface BillEditService {
 
     void addLaborToBill(LaborServiceModel laborServiceModel, int billNumber);
 
-    BigDecimal updatePartsFinalAmount(Bill bill);
+    BigDecimal updatePartsFinalAmount(Bill bill, BigDecimal addedPartPrice);
 
-    BigDecimal updateBillTotalAmount(Bill bill);
+    BigDecimal updateBillTotalAmount(Bill bill, BigDecimal addedPartPrice);
 
     BigDecimal updateLaborTotalAmount(Bill bill);
 }

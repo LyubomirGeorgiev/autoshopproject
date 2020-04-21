@@ -133,7 +133,7 @@ public class BillEditController {
     }
 
     @GetMapping("/partadded")
-    public ModelAndView getAddedPart(
+    public ModelAndView getAddedPart(@PathVariable("billNumber") Integer billNumber,
             @ModelAttribute("partWarehouseModel") PartWarehouseModel partWarehouseModel,
             @ModelAttribute("laborModel") LaborModel laborModel,
             ModelAndView modelAndView){

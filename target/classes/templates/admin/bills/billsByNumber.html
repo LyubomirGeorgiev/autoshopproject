@@ -83,10 +83,11 @@
                     <label for="partWarehouse">PART: </label>
                     <select name="partWarehouse" id="partWarehouse" th:field="*{partInventoryNumber}">
                         <option th:each="part : ${parts}" th:value="${part.partInventoryNumber}">
-                            <span th:text="${part.part.partNumber}"></span>
-                            <span th:text="${part.part.name}"></span>
-                            <span th:text="${part.part.brand}"></span>
-                            <span th:text="${part.soldPrice}"></span>
+                            <span th:text="${part.part.partNumber}"></span>/
+                            <span th:text="${part.part.name}"></span>/
+                            <span th:text="${part.part.brand}"></span>/
+                            <span th:text="${part.officialSellingPrice}"></span>/ min discounted price:
+                            <span th:text="${part.deliveryPrice} * 1.05"></span>
                         </option>
                     </select>
                     <label for="soldPrice">Selling price: </label>
@@ -124,7 +125,7 @@
                     <label for="quantity">Quantity: </label>
                     <input type="text" name="quantity" id="quantity" th:field="*{quantity}">
                     <label for="employee">Employee: </label>
-                    <select name="employee" id="employee" th:field="*{employee}">
+                    <select name="employee" id="employee" th:field="*{employeeNumber}">
                         <option th:each="employee : ${employees}" th:value="${employee.employeeNumber}" th:text="${employee.name}"></option>
                     </select>
                     <button type="submit">ADD LABOR</button>

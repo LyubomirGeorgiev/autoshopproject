@@ -37,6 +37,7 @@ public class LaborServiceImpl implements LaborService{
         labor.setEmployee(laborServiceModel.getEmployee());
         labor.setTotalPrice(laborServiceModel.getSinglePrice()
                 .multiply(new BigDecimal(laborServiceModel.getQuantity())));
+        labor.setEmployee(this.employeeService.getEmployeeByEmployeeNumber(laborServiceModel.getEmployeeNumber()));
 
         return this.laborRepository.saveAndFlush(labor);
     }

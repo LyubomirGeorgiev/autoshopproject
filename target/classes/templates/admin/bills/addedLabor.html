@@ -45,14 +45,19 @@
                 <th>ACTION</th>
                 <th>SINGLE PRICE</th>
                 <th>QUANTITY</th>
+                <th>TOTAL PRICE</th>
             </tr>
             <tr>
                 <td th:text="${laborModel.action}"></td>
                 <td th:text="${laborModel.singlePrice}"></td>
                 <td th:text="${laborModel.quantity}"></td>
+                <td th:text="${laborModel.quantity} * ${laborModel.singlePrice}"></td>
             </tr>
         </table>
 
+        <div>
+            <a th:href="@{/admin/bills/{billNumber}(billNumber=${billNumber})}" >GO BACK</a>
+        </div>
     </section>
 </main>
 <footer>

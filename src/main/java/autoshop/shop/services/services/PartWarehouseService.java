@@ -2,6 +2,7 @@ package autoshop.shop.services.services;
 
 import autoshop.shop.data.entities.Bill;
 import autoshop.shop.data.entities.PartWarehouse;
+import autoshop.shop.data.entities.enums.PartStatus;
 import autoshop.shop.services.models.PartWarehouseServiceModel;
 import autoshop.shop.web.api.models.PartAddModel;
 
@@ -19,5 +20,7 @@ public interface PartWarehouseService {
     PartWarehouse addPartToWarehouse(PartAddModel partAddModel);
 
     void editPartSoldPrice(BigDecimal soldPrice, PartWarehouse part);
+
+    void setPartSold(PartWarehouse part, PartStatus partStatus);
 
 }

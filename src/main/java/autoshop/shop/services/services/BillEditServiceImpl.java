@@ -3,6 +3,7 @@ package autoshop.shop.services.services;
 import autoshop.shop.data.entities.Bill;
 import autoshop.shop.data.entities.Labor;
 import autoshop.shop.data.entities.PartWarehouse;
+import autoshop.shop.data.entities.enums.PartStatus;
 import autoshop.shop.data.repositories.BillRepository;
 import autoshop.shop.services.models.BillViewServiceModel;
 import autoshop.shop.services.models.LaborServiceModel;
@@ -56,15 +57,17 @@ public class BillEditServiceImpl implements BillEditService{
 
         PartWarehouse part = this.partWarehouseService.getPartByPartNumber(partWarehouseModel.getPartInventoryNumber());
 
-        this.partWarehouseService.editPartSoldPrice(partWarehouseModel.getSoldPrice(), part);
-
         Bill bill = this.billRepository.findBillByBillNumber(billNumber);
+
+        this.partWarehouseService.editPartSoldPrice(partWarehouseModel.getSoldPrice(), part);
 
         this.partWarehouseService.setPartToBill(bill.getId(), part);
 
-        bill.setPartsAmount(updatePartsFinalAmount(bill));
+        this.partWarehouseService.setPartSold(part, PartStatus.SOLD);
 
-        bill.setTotalAmount(updateBillTotalAmount(bill));
+        bill.setPartsAmount(updatePartsFinalAmount(bill, partWarehouseModel.getSoldPrice()));
+
+        bill.setTotalAmount(updateBillTotalAmount(bill, partWarehouseModel.getSoldPrice()));
 
         this.billRepository.updateBill(bill, bill.getId());
     }
@@ -72,21 +75,20 @@ public class BillEditServiceImpl implements BillEditService{
     @Override
     public void addLaborToBill(LaborServiceModel laborServiceModel, int billNumber) {
 
-        Labor labor = this.laborService.addLabor(laborServiceModel, billNumber);
+        this.laborService.addLabor(laborServiceModel, billNumber);
         Bill bill = this.billRepository.findBillByBillNumber(billNumber);
 
         bill.setLaborAmount(updateLaborTotalAmount(bill));
-        bill.setTotalAmount(updateBillTotalAmount(bill));
+        bill.setTotalAmount(updateBillTotalAmount(bill, new BigDecimal(0)));
 
         this.billRepository.updateBill(bill, bill.getId());
 
     }
 
     @Override
-    public BigDecimal updateBillTotalAmount(Bill bill) {
+    public BigDecimal updateBillTotalAmount(Bill bill, BigDecimal addedPartPrice) {
 
-        return bill.getParts().stream().map(PartWarehouse::getSoldPrice).reduce(BigDecimal.ZERO, BigDecimal::add)
-                .add(bill.getLaborList().stream().map(Labor::getTotalPrice).reduce(BigDecimal.ZERO, BigDecimal::add));
+        return addedPartPrice.add(bill.getTotalAmount());
     }
 
     @Override
@@ -97,8 +99,8 @@ public class BillEditServiceImpl implements BillEditService{
     }
 
     @Override
-    public BigDecimal updatePartsFinalAmount(Bill bill) {
+    public BigDecimal updatePartsFinalAmount(Bill bill, BigDecimal addedPartPrice) {
 
-        return bill.getParts().stream().map(PartWarehouse::getSoldPrice).reduce(BigDecimal.ZERO, BigDecimal::add);
+        return addedPartPrice.add(bill.getPartsAmount());
     }
 }

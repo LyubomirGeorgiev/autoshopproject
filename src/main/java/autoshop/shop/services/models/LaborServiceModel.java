@@ -24,6 +24,8 @@ public class LaborServiceModel {
 
     private Employee employee;
 
+    private int employeeNumber;
+
     public LaborServiceModel() {
     }
 
@@ -89,5 +91,13 @@ public class LaborServiceModel {
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
+    }
+
+    public int getEmployeeNumber() {
+        return employeeNumber;
+    }
+
+    public void setEmployeeNumber(int employeeNumber) {
+        this.employeeNumber = employeeNumber;
     }
 }

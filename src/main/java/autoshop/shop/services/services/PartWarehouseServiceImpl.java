@@ -36,7 +36,7 @@ public class PartWarehouseServiceImpl implements PartWarehouseService{
 
         List<PartWarehouseServiceModel> parts = this
                 .partWarehouseRepository
-                .findAllBySoldDateIsNull()
+                .findAllBySoldDateIsNullOrderByDeliveredDate()
                 .stream()
                 .map(part -> this.modelMapper.map(part, PartWarehouseServiceModel.class))
                 .collect(Collectors.toList());
@@ -89,9 +89,14 @@ public class PartWarehouseServiceImpl implements PartWarehouseService{
     public void editPartSoldPrice(BigDecimal soldPrice, PartWarehouse part) {
 
         this.partWarehouseRepository.setPartWarehouseSoldPrice(soldPrice, part.getId());
+    }
 
-        this.partWarehouseRepository.setSold(soldPrice, part.getId());
+    @Override
+    public void setPartSold(PartWarehouse part, PartStatus partStatus) {
 
+        this.partWarehouseRepository.setPartStatusSold(part.getId(), partStatus);
+
+        this.partWarehouseRepository.setPartSellingDate(part.getId(), new Date());
     }
 
 }

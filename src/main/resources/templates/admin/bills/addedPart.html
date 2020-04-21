@@ -42,14 +42,18 @@
 
         <table>
             <tr>
-                <th>PART NUMBER</th>
+                <th>PART INVENTORY NUMBER</th>
                 <th>PRICE</th>
             </tr>
             <tr>
-<!--                <td th:text="${partWarehouseModel.part.partNumber}"></td>-->
-<!--                <td th:text="${partWarehouseModel.soldPrice}"></td>-->
+                <td th:text="${partWarehouseModel.partInventoryNumber}"></td>
+                <td th:text="${partWarehouseModel.soldPrice}"></td>
             </tr>
         </table>
+
+        <div>
+            <a th:href="@{/admin/bills/{billNumber}(billNumber=${billNumber})}" >GO BACK</a>
+        </div>
 
     </section>
 </main>
