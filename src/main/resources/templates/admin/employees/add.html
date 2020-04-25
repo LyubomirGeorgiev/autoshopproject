@@ -39,7 +39,7 @@
         <h3>ADD EMPLOYEE</h3>
 
         <div>
-            <form th:action="@{/admin/employees/add}" method="post" th:name="addParts" th:object="${employeeAddModel}">
+            <form th:action="@{/admin/employees/add}" method="post" th:name="addEmployee" th:object="${employeeAddModel}">
                 <label for="name">Employee name: </label>
                 <input type="text" name="name" id="name" th:field="*{name}">
                 <label for="position">Position: </label>

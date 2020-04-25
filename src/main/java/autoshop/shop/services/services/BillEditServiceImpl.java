@@ -75,11 +75,12 @@ public class BillEditServiceImpl implements BillEditService{
     @Override
     public void addLaborToBill(LaborServiceModel laborServiceModel, int billNumber) {
 
+        laborServiceModel.setTotalPrice(laborServiceModel.getSinglePrice().multiply(new BigDecimal(laborServiceModel.getQuantity())));
         this.laborService.addLabor(laborServiceModel, billNumber);
         Bill bill = this.billRepository.findBillByBillNumber(billNumber);
 
         bill.setLaborAmount(updateLaborTotalAmount(bill));
-        bill.setTotalAmount(updateBillTotalAmount(bill, new BigDecimal(0)));
+        bill.setTotalAmount(updateBillTotalAmount(bill, laborServiceModel.getTotalPrice()));
 
         this.billRepository.updateBill(bill, bill.getId());
 
@@ -87,6 +88,10 @@ public class BillEditServiceImpl implements BillEditService{
 
     @Override
     public BigDecimal updateBillTotalAmount(Bill bill, BigDecimal addedPartPrice) {
+
+        if (bill.getTotalAmount() == null){
+            return addedPartPrice;
+        }
 
         return addedPartPrice.add(bill.getTotalAmount());
     }
@@ -100,6 +105,11 @@ public class BillEditServiceImpl implements BillEditService{
 
     @Override
     public BigDecimal updatePartsFinalAmount(Bill bill, BigDecimal addedPartPrice) {
+
+        if (bill.getPartsAmount() == null){
+
+            return addedPartPrice;
+        }
 
         return addedPartPrice.add(bill.getPartsAmount());
     }

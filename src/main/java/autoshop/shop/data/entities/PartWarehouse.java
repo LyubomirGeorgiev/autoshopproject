@@ -149,5 +149,4 @@ public class PartWarehouse extends BaseEntity{
         this.partInventoryNumber = partInventoryNumber;
     }
 
-
 }

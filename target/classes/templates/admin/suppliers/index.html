@@ -28,25 +28,15 @@
     <div>
         <ul>
             <li><a th:href="@{/admin/home}">HOME</a></li>
-            <li><a th:href="@{/admin/employees/}">EMPLOYEES</a></li>
-            <li><a th:href="@{/admin/employees/add}">ADD EMPLOYEE</a></li>
+            <li><a th:href="@{/admin/suppliers/}">SUPPLIERS</a></li>
+            <li><a th:href="@{/admin/suppliers/add}">ADD SUPPLIER</a></li>
         </ul>
     </div>
 </nav>
 <main>
     <section>
-        <h2>EMPLOYEES PAGE</h2>
-        <h3>ADD EMPLOYEE</h3>
+        <h2>SUPPLIERS PAGE</h2>
 
-        <div>
-            <form th:action="@{/admin/employees/add}" method="post" th:name="addEmployee" th:object="${employeeAddModel}">
-                <label for="name">Employee name: </label>
-                <input type="text" name="name" id="name" th:field="*{name}">
-                <label for="position">Position: </label>
-                <input type="text" name="position" id="position" th:field="*{position}">
-                <button type="submit">ADD EMPLOYEE</button>
-            </form>
-        </div>
 
 
     </section>

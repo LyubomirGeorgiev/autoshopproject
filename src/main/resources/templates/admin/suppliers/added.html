@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" th:href="@{../../css/style.css}">
+</head>
+<body>
+<header>
+    <div>
+        Here is the logo of the site / Тук ще е логото на сайта
+        <p><h1>Autoservice</h1> <h2>Grand Auto</h2></p>
+    </div>
+
+    <div>
+        <p>ADMIN HOMEPAGE</p>
+        <p>MONEY</p>
+        <p>Hello, <span sec:authentication="name"></span>!</p>
+        <form th:action="@{/logout}">
+            <button>LOG OUT</button>
+        </form>
+    </div>
+</header>
+<nav>
+    <div>
+        <ul>
+            <li><a th:href="@{/admin/home}">HOME</a></li>
+            <li><a th:href="@{/admin/supliers/}">SUPPLIERS</a></li>
+            <li><a th:href="@{/admin/suppliers/add}">ADD SUPPLIER</a></li>
+        </ul>
+    </div>
+</nav>
+<main>
+    <section>
+        <h2>SUPPLIERS PAGE</h2>
+        <h3>SUPPLIER ADDED</h3>
+
+        <div>
+            <p>You have successfully added a supplier: </p>
+            <div>
+                <h6>Supplier number</h6>
+                <p th:text="${supplier.supplierNumber}"></p>
+            </div>
+            <div>
+                <h6>Name</h6>
+                <p th:text="${supplier.name}"></p>
+            </div>
+            <div>
+                <h6>City</h6>
+                <p th:text="${supplier.city}"></p>
+            </div><div>
+                <h6>Address</h6>
+                <p th:text="${supplier.address}"></p>
+            </div><div>
+                <h6>Contact name</h6>
+                <p th:text="${supplier.contactName}"></p>
+            </div><div>
+                <h6>Contact phone</h6>
+                <p th:text="${supplier.contactPhone}"></p>
+            </div><div>
+                <h6>Supervisor name</h6>
+                <p th:text="${supplier.supervisorName}"></p>
+            </div><div>
+                <h6>Supervisor phone</h6>
+                <p th:text="${supplier.supervisorPhone}"></p>
+            </div><div>
+                <h6>Office phone</h6>
+                <p th:text="${supplier.officePhone}"></p>
+            </div><div>
+                <h6>Notes</h6>
+                <p th:text="${supplier.notes}"></p>
+            </div>
+        </div>
+
+    </section>
+</main>
+<footer>
+    <p>Garnd Auto LLC - All rights reserved &copy; 2019 - 2020</p>
+</footer>
+</body>
+</html>

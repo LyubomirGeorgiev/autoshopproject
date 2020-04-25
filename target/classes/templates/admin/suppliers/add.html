@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" th:href="@{../../css/style.css}">
+</head>
+<body>
+<header>
+    <div>
+        Here is the logo of the site / Тук ще е логото на сайта
+        <p><h1>Autoservice</h1> <h2>Grand Auto</h2></p>
+    </div>
+
+    <div>
+        <p>ADMIN HOMEPAGE</p>
+        <p>MONEY</p>
+        <p>Hello, <span sec:authentication="name"></span>!</p>
+        <form th:action="@{/logout}">
+            <button>LOG OUT</button>
+        </form>
+    </div>
+</header>
+<nav>
+    <div>
+        <ul>
+            <li><a th:href="@{/admin/home}">HOME</a></li>
+            <li><a th:href="@{/admin/supliers/}">SUPPLIERS</a></li>
+            <li><a th:href="@{/admin/suppliers/add}">ADD SUPPLIER</a></li>
+        </ul>
+    </div>
+</nav>
+<main>
+    <section>
+        <h2>SUPPLIERS PAGE</h2>
+        <h3>ADD SUPPLIER</h3>
+
+        <div>
+            <form th:action="@{/admin/suppliers/add}" method="post" th:name="addSupplier" th:object="${supplierAddModel}">
+                <div>
+                    <label for="name">Supplier name </label>
+                    <input type="text" name="name" id="name" th:field="*{name}">
+                </div>
+                <div>
+                    <label for="city">City </label>
+                    <input type="text" name="city" id="city" th:field="*{city}">
+                </div>
+                <div>
+                    <label for="address">Address </label>
+                    <input type="text" name="address" id="address" th:field="*{address}">
+                </div>
+                <div>
+                    <label for="contactName">Contact name </label>
+                    <input type="text" name="contactName" id="contactName" th:field="*{contactName}">
+                </div>
+                <div>
+                    <label for="contactPhone">Contact phone </label>
+                    <input type="text" name="contactPhone" id="contactPhone" th:field="*{contactPhone}">
+                </div>
+                <div>
+                    <label for="supervisorName">Supervisor name </label>
+                    <input type="text" name="supervisorName" id="supervisorName" th:field="*{supervisorName}">
+                </div>
+                <div>
+                    <label for="supervisorPhone">Supervisor phone</label>
+                    <input type="text" name="supervisorPhone" id="supervisorPhone" th:field="*{supervisorPhone}">
+                </div>
+                <div>
+                    <label for="officePhone">Office phone</label>
+                    <input type="text" name="officePhone" id="officePhone" th:field="*{officePhone}">
+                </div>
+                <div>
+                    <label for="notes">Notes</label>
+                    <textarea name="notes" id="notes" th:field="*{notes}"></textarea>
+                </div>
+                <button type="submit">ADD SUPPLIER</button>
+            </form>
+        </div>
+
+
+    </section>
+</main>
+<footer>
+    <p>Garnd Auto LLC - All rights reserved &copy; 2019 - 2020</p>
+</footer>
+</body>
+</html>

@@ -1,5 +1,7 @@
 package autoshop.shop.data.entities;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -17,12 +19,15 @@ public class Bill extends BaseEntity{
     private Date endDate;
 
     @Column(name = "labor_amount")
+    @ColumnDefault("0")
     private BigDecimal laborAmount;
 
     @Column(name = "parts_amount")
+    @ColumnDefault("0")
     private BigDecimal partsAmount;
 
     @Column(name = "total_amount")
+    @ColumnDefault("0")
     private BigDecimal totalAmount;
 
     @Column(name = "activities_needed", length = 500)
@@ -32,6 +37,7 @@ public class Bill extends BaseEntity{
     private int billNumber;
 
     @Column(name = "percent_paid")
+    @ColumnDefault("0")
     private int percent_paid;
 
     @ManyToOne
